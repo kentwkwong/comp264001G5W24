@@ -27,6 +27,7 @@ class MarketWatch:
         return article_urls
     
     def get_articles(self):
+        result = {}
         self.articles = []
         try:
             counter = 0
@@ -46,7 +47,7 @@ class MarketWatch:
                     content += paragraph.text
                 if not regexp.search(content):
                     # print(f'DEBUG --> real news: {url}')
-                    self.articles.append(content)
+                    self.articles.append({'url':url,'content':content})
                     counter += 1
                 if counter >= self.num_retrive:
                     break

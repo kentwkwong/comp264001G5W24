@@ -44,7 +44,7 @@ class SeekingAlpha:
                     paragraph = p.text
                     if not regexp.search(paragraph):
                         content += paragraph
-                self.articles.append(content)
+                self.articles.append({'url':url,'content':content})
                 counter += 1
                 # print(content)
                 # print(f'DEBUG --> -------------------------------')

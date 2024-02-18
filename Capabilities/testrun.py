@@ -15,7 +15,8 @@ articles = obj.get_content()
 counter = 1
 for a in articles:
     print(f'DEBUG --> [{counter}]')
-    print(a)
+    print(f"url: {a['url']}")
+    print(f"content: {a['content']}")
     print()
     print(f'DEBUG --------------------')
     counter += 1
