@@ -9,7 +9,7 @@ class WebScrapeService:
         articles = []
         news_providers = []
         news_providers.append(mw.MarketWatch(self.stockcode))
-        news_providers.append(sa.SeekingAlpha(self.stockcode))
+        # news_providers.append(sa.SeekingAlpha(self.stockcode))
 
         for provider in news_providers:
             content = provider.get_articles()

@@ -9,6 +9,7 @@ from contextlib import contextmanager
 
 class SeekingAlpha:
     def __init__(self, stock_code):
+        self.stock_code = stock_code
         self.articles = []
         self.num_retrive = util.MAX_ARTICLES
         url = f'{util.SEEKINGALPHA_URL}/symbol/{stock_code}'
@@ -44,7 +45,7 @@ class SeekingAlpha:
                     paragraph = p.text
                     if not regexp.search(paragraph):
                         content += paragraph
-                self.articles.append({'url':url,'content':content})
+                self.articles.append({'url':url, 'stockcode':self.stock_code,'content':content})
                 counter += 1
                 # print(content)
                 # print(f'DEBUG --> -------------------------------')

@@ -9,6 +9,7 @@ from contextlib import contextmanager
 
 class MarketWatch:
     def __init__(self, stock_code):
+        self.stock_code = stock_code
         self.articles = []
         self.num_retrive = util.MAX_ARTICLES
         url = util.MARKETWATCH_URL.replace('@STOCKCODE',stock_code)
@@ -47,7 +48,7 @@ class MarketWatch:
                     content += paragraph.text
                 if not regexp.search(content):
                     # print(f'DEBUG --> real news: {url}')
-                    self.articles.append({'url':url,'content':content})
+                    self.articles.append({'url':url, 'stockcode':self.stock_code,'content':content})
                     counter += 1
                 if counter >= self.num_retrive:
                     break
