@@ -1,0 +1,12 @@
+[
+  {
+    "userid": "user1",
+    "password": "user1",
+    "tier": 1
+  },
+  {
+    "userid": "user2",
+    "password": "abc",
+    "tier": 2
+  }
+]
