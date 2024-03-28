@@ -1,10 +1,6 @@
 from chalice import Chalice, Response
-from chalice import CognitoUserPoolAuthorizer
-app = Chalice(app_name='Capabilities')
 
-authorizer = CognitoUserPoolAuthorizer(
-    'MyPool', provider_arns=['arn:aws:cognito-idp:ca-central-1:905418377930:userpool/ca-central-1_p1MezIG2a'],
-    scopes=["https://www.youtube.com/"])
+app = Chalice(app_name='Capabilities')
 
 
 @app.route('/')
@@ -36,10 +32,6 @@ def loggedout():
         status_code=200,
         headers={'Content-Type': 'text/html'}
     )
-
-@app.route('/user-pools', methods=['GET'], authorizer=authorizer)
-def authenticated():
-    return {"success": True}
 
 
 @app.route('/stockcode')
