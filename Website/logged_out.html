@@ -1,4 +1,12 @@
 <body>
     <h2>Logged Out!</h2>
-    <a href="https://301242732.auth.ca-central-1.amazoncognito.com/login?client_id=6naqnl30stnj6odm3n9qhn3mqg&response_type=code&scope=email+openid+phone&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Floggedin">Log in again</a>
+    <br />
+    <span>You will be redirect to the main page in 2 sec...</span>
+    <br />
+    <a href="https://301242732.auth.ca-central-1.amazoncognito.com/login?client_id=7bu7si89rrf21h6e117arjake0&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Floggedin">Log in again</a>
 </body>
+<script>
+    setTimeout(function() {
+        window.location.href = "/";
+    }, 2000);
+</script>

@@ -1,7 +1,6 @@
-
-from cryptography.fernet import Fernet
-
 MAX_ARTICLES = 2
+
+MAX_TIER = 5
 
 HEADER = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
@@ -14,17 +13,3 @@ MARKETWATCH_URL = f"https://www.marketwatch.com/investing/stock/@STOCKCODE?mod=s
 SEEKINGALPHA_SKIP_CONTENT = 'Getty Images'
 SEEKINGALPHA_URL = f"https://seekingalpha.com"
 
-PRIVATE_KEY = b'SR6ftlruAq1kSpk6ct4fdyxKW678li44h5YVnYVmUhs='
-
-DEFAULT_PASSWORD = b'gAAAAABl4loHyDEmW4rxD-_Ra3br4uhl986P7VAJY_UPzpBysTo3XKQTiPMoCY0LxLEG4C6Qs6_uZycm5PHq9jcG751M8ag7Ug=='
-
-def encrypt_data(data):
-    cipher = Fernet(PRIVATE_KEY)
-    encrypted_data = cipher.encrypt(data.encode('utf-8'))
-    print(f'>>>>>>>>>> {type(encrypted_data)}')
-    return encrypted_data.decode('utf-8')
-
-def decrypt_data(encrypted_data):
-    cipher = Fernet(PRIVATE_KEY)
-    decrypted_data = cipher.decrypt(encrypted_data)
-    return decrypted_data
