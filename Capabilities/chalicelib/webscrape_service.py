@@ -1,16 +1,11 @@
-from . import marketwatch_service as mw
-from . import seekingalpha_service as sa
-
+from . import newsdata_service as newsdata
     
 def get_content(stockcode):
-    articles = []
-    news_providers = []
+    # articles = newsdata.get_contents(stockcode)
+    # print(articles)
+    result = '+ve|-ve|neutral'
+    print(result)
+    # do Comprehend here
 
-    news_providers.append(mw.MarketWatch(stockcode))
 
-    for provider in news_providers:
-        content = provider.get_articles()
-        articles += content
-
-    return ["a1","b2","c3"]
-    # return articles
+    return {'message':result}

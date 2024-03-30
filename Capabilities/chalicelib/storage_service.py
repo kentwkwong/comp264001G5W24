@@ -1,8 +1,7 @@
-#####   CREATE A NEW BUCKET ######
 import boto3
 import logging
 import json
-import chalicelib.cloud_util as util
+
 
 # define credentials
 history = 'collection_history.json'
@@ -60,12 +59,13 @@ def register_user(email):
     return usr
 
 def upgrade_tier(email):
+    MAX_TIER = 5
     is_upgrade = False
     show_tier = 0
     data = read_users()
     for user in data:
         if user['userid'] == email:
-            if user['tier'] < util.MAX_TIER:
+            if user['tier'] < MAX_TIER:
                 user['tier'] += 1
                 show_tier = user['tier']
                 is_upgrade = True

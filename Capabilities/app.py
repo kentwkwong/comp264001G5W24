@@ -23,9 +23,9 @@ def loggedin():
     authorization_code = app.current_request.query_params['code']
     try:
         # reduce read/write to Cognito
-        # email = cognito.get_user_email(authorization_code)
+        email = cognito.get_user_email(authorization_code)
 
-        email = "kentwkwong@gmail.com"
+        # email = "kentwkwong@gmail.com"
         user = s3.register_user(email)
         with open('../Website/logged_in.html','r') as f:
             html_content = f.read()

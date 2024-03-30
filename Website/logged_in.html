@@ -52,7 +52,7 @@
         }).done(function(data) {
             console.log('btn_search')
             console.log(data)
-            $('#result').text(data)
+            $('#result').text(JSON.stringify(data))
         });
     });
 </script>
