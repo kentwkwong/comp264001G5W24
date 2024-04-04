@@ -1,12 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logged Out</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .btn-primary {
+            background-color: #6c757d; /* Secondary Color */
+            border-color: #6c757d;
+        }
+        .btn-primary:hover {
+            background-color: #545b62;
+            border-color: #545b62;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
 <body>
-    <h2>Logged Out!</h2>
-    <br />
-    <span>You will be redirect to the main page in 2 sec...</span>
-    <br />
-    <a href="https://301242732.auth.ca-central-1.amazoncognito.com/login?client_id=7bu7si89rrf21h6e117arjake0&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Floggedin">Log in again</a>
+    <div class="container mt-5">
+        <h2>Logged Out!</h2>
+        <p>You will be redirected to the main page in 2 seconds...</p>
+        <a href="/" class="btn btn-primary">Return to Main Page Now</a>
+    </div>
+    <script>
+        setTimeout(function() {
+            window.location.href = "/";
+        }, 2000);
+    </script>
 </body>
-<script>
-    setTimeout(function() {
-        window.location.href = "/";
-    }, 2000);
-</script>
+</html>
