@@ -15,6 +15,9 @@ def save_articles_to_s3(userId,stockCode):
     file_exists = 'Contents' in response and any(s3_file_name == content['Key'] for content in response['Contents'])
 
     if file_exists:
+        response = table.get_item(Key={'sub': userId})
+        # print(response)
+        updated_credit_balance = response['Attributes']['credit_balance']
         print(f'File already exists in S3: {s3_file_name}')
     else:
         articles = get_articles(stockCode)

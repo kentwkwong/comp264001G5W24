@@ -7,10 +7,9 @@ const Navbar = ({ onSignOut, onLogin, user }) => {
       <div>
         {user.email ? (
           <div className="flex gap-5 items-center">
-            <div>
+            <Link to="/">
               Welcome, {user.username} (Credit: {user.credit_balance})
-            </div>
-
+            </Link>
             <Link
               to="/upgrade"
               className="bg-blue-600 text-white p-2 rounded-md">

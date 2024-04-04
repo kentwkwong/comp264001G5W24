@@ -93,6 +93,6 @@ def stockcode():
         # print("result:",result)
         print(f'User credit balance updated to: {updated_credit_balance}')
 
-        return Response(body={"result": result, "updated_credit_balance": updated_credit_balance}, status_code=200)
+        return {"result": result, "updated_credit_balance": updated_credit_balance}
     except Exception as e:
         raise ChaliceViewError(e)
