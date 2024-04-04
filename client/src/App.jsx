@@ -2,6 +2,8 @@ import Navbar from './Navbar'
 import { useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Home from './Home'
+import Upgrade from './Upgrade'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -124,18 +126,38 @@ function App() {
   }, [token]) // eslint-disable-line
 
   return (
-    <div className=" w-screen h-screen bg-slate-50">
+    <div className="w-screen h-screen bg-slate-50">
+      {' '}
       <Navbar onSignOut={handleSignOut} onLogin={handleLogin} user={user} />
-      {user.username ? (
-        <Home user={user} setUser={setUser} />
-      ) : (
-        <div className="text-center font-bold text-3xl mt-32">
-          Welcome to my channel, please{' '}
-          <button className="hover:text-blue-600" onClick={handleLogin}>
-            Login
-          </button>
-        </div>
-      )}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            user.username ? (
+              <Home user={user} setUser={setUser} />
+            ) : (
+              <div className="w-full min-h-[calc(100vh-3.5rem)] flex items-center justify-center flex-col gap-6">
+                <h1 className="text-2xl text-center mt-10">
+                  Welcome to the Stock Sentiment App
+                </h1>
+                <p className="text-center mt-5">
+                  Please{' '}
+                  <button
+                    className=" font-semibold text-blue-600 hover:text-blue-800"
+                    onClick={handleLogin}>
+                    login
+                  </button>{' '}
+                  to continue
+                </p>
+              </div>
+            )
+          }
+        />
+        <Route
+          path="/upgrade"
+          element={<Upgrade user={user} setUser={setUser} />}
+        />
+      </Routes>
     </div>
   )
 }

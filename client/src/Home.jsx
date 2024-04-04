@@ -8,7 +8,7 @@ const Home = ({ user, setUser }) => {
     sentiment_score: {},
   })
   const [isCreditBalanceZero, setIsCreditBalanceZero] = useState(false)
-
+  console.log('isCreditBalanceZero: ', isCreditBalanceZero)
   const [searchHistory, setSearchHistory] = useState([])
 
   // console.log('searchHistory: ', searchHistory)
@@ -58,7 +58,7 @@ const Home = ({ user, setUser }) => {
         credit_balance: data.updated_credit_balance,
       })
 
-      console.log(data)
+      // console.log(data)
       fetchSearchHistory()
     } catch (error) {
       console.error('Error:', error)
@@ -66,13 +66,15 @@ const Home = ({ user, setUser }) => {
   }
 
   useEffect(() => {
-    if (user.credit_balance == 0) {
+    if (user.credit_balance === 0) {
       setIsCreditBalanceZero(true)
     }
-  }, [user.credit_balance])
+    setIsCreditBalanceZero(false)
+  }, []) // eslint-disable-line
+
   useEffect(() => {
     fetchSearchHistory()
-  }, [sentiment]) // eslint-disable-line
+  }, []) // eslint-disable-line
 
   return (
     <div className="px-6 md:px-20 flex items-center min-h-[calc(100vh-3.5rem)] justify-center">
@@ -97,7 +99,8 @@ const Home = ({ user, setUser }) => {
         </form>
         {isCreditBalanceZero && (
           <div className="text-red-500 font-bold">
-            You have no enough credit balance! Please upgrade your account.
+            You don&apos;t have enough credit balance! Please upgrade your
+            account.
           </div>
         )}
         <div>

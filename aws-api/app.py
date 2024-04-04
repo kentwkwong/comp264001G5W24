@@ -37,6 +37,33 @@ def add_user_to_db():
         return Response(body={"user": user_info}, status_code=200)
     except Exception as e:
         raise ChaliceViewError(e)
+    
+@app.route("/upgradeUser", cors=True, methods=["POST"])
+def upgrade_user_to_db():
+    table = dynamodb.Table('users')  
+    try:
+        request = app.current_request.json_body
+        upgrade_id = request.get('id')
+        userId = request.get('userId')
+           
+        if upgrade_id == 2:
+            increment = 20
+        elif upgrade_id == 3:
+            increment = 100
+        else:
+            return {"error": "Invalid upgrade ID."}  
+
+        response = table.update_item(
+            Key={'sub': userId}, 
+            UpdateExpression='ADD credit_balance :val',
+            ExpressionAttributeValues={':val': increment}, 
+            ReturnValues='UPDATED_NEW'
+        )
+        updated_credit_balance = response['Attributes']['credit_balance']
+        
+        return Response(body={"updated_credit_balance": updated_credit_balance}, status_code=200)
+    except Exception as e:
+        raise ChaliceViewError(e)
 
 @app.route('/search/{userId}', cors=True, methods=['GET'])
 def search_history(userId):

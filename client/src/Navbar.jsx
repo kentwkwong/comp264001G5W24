@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 const Navbar = ({ onSignOut, onLogin, user }) => {
   return (
@@ -9,9 +10,12 @@ const Navbar = ({ onSignOut, onLogin, user }) => {
             <div>
               Welcome, {user.username} (Credit: {user.credit_balance})
             </div>
-            <button className=" bg-blue-600 text-white p-2 rounded-md">
+
+            <Link
+              to="/upgrade"
+              className="bg-blue-600 text-white p-2 rounded-md">
               Upgrade
-            </button>
+            </Link>
           </div>
         ) : (
           'Welcome'
@@ -39,7 +43,6 @@ const Navbar = ({ onSignOut, onLogin, user }) => {
 Navbar.propTypes = {
   onSignOut: PropTypes.func.isRequired,
   onLogin: PropTypes.func.isRequired,
-  setUser: PropTypes.func.isRequired,
 
   user: PropTypes.shape({
     email: PropTypes.string,
