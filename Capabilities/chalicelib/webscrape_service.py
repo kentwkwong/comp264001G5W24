@@ -4,15 +4,17 @@ import boto3
 def comprehend(text):
     client = boto3.client('comprehend')
     response = client.detect_sentiment(Text=text, LanguageCode='en')
-    sentiment_score = response['SentimentScore']
-    if sentiment_score['Positive'] > 0.8:
-        result = "positive"
-    elif sentiment_score['Negative'] > 0.8:
-        result = "negative"
+    print('>'*50)
+    print('article: ', text)
+    print()
+    print('response: ', response)
+    sentiment = response['Sentiment']
+    if sentiment == 'POSITIVE':
+        return 1
+    elif sentiment == 'NEGATIVE':
+        return -1
     else:
-        result = "neutral"
-    # print(result)
-    return result
+        return 0
 
 def get_content(stockcode):
     articles = newsdata.get_contents(stockcode)
@@ -20,7 +22,16 @@ def get_content(stockcode):
     # result = '+ve|-ve|neutral'
     # print(result)
     # do Comprehend here
-    # for a in articles:
-    #     result = comprehend(a)
-    result = comprehend(articles)
-    return {'message':result}
+    score = 0
+    for a in articles:
+        result = comprehend(a)
+        print('result: ', result)
+        score += result
+    # result = comprehend(articles)
+    print('score: ', score)
+    if score / len(articles) > 0:
+        return {'message': "positive"}
+    elif score / len(articles) < 0:
+        return {'message': "negative"}
+    else:
+        return {'message': "neutral"}

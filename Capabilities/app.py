@@ -9,7 +9,7 @@ app = Chalice(app_name='Capabilities')
 
 @app.route('/')
 def index():
-    s3.reset_tier('kentwkwong@gmail.com')
+    # s3.reset_tier('kentwkwong@gmail.com')
     with open('../Website/index.html','r') as f:
         html_content = f.read()
     return Response(
